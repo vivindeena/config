@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -25,6 +27,15 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+--vim.opt.colorcolumn = "80"
 
-vim.g.mapleader = " "
+-- Ensure colorcolumn is changed specifically for Python files
+--[[vim.api.nvim_create_autocmd({ "FileType", "BufReadPost" }, {
+  pattern = { "python" },
+  callback = function()
+    -- Attempt to set the colorcolumn to 120
+    vim.wo.colorcolumn = "120"
+    print("Setting colorcolumn for Python to:", vim.wo.colorcolumn)
+  end,
+})]]
+
