@@ -1,6 +1,6 @@
-require("vivindeena.set")
-require("vivindeena.remap")
-require("vivindeena.lazy_init")
+require("vivindeena.core.options")
+require("vivindeena.core.keymaps")
+
 
 function R(name)
     require("plenary.reload").reload_module(name)
@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd({"BufWritePre"}, {
     group = vivindeenaGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
-})local vivindeenaGroup = vim.api.nvim_create_augroup('vivindeena', {})
+})
 
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
     group = vivindeenaGroup,

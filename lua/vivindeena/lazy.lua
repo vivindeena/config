@@ -16,9 +16,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
-require("lazy").setup({
+require("lazy").setup({ { import = "vivindeena.plugins" } }, {
   spec = "vivindeena.lazy",
   install = {colorscheme = {"rose-pine"} },
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
   change_detection = { notify = false },
 })

@@ -1,1 +1,2 @@
-require("vivindeena")
+require("vivindeena.core")
+require("vivindeena.lazy")
