@@ -38,9 +38,19 @@ return {
         end
     },
     {
-        "sindrets/diffview.nvim",
-        config = function()
-            vim.keymap.set("n", "<leader>gvd", ":DiffviewOpen<CR>", {})
-        end
+        "kdheepak/lazygit.nvim",
+        cmd = {
+            "LazyGit",
+            "LazyGitConfig",
+            "LazyGitCurrentFile",
+            "LazyGitFilter",
+            "LazyGitFilterCurrentFile",
+        },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        keys = {
+            { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+        }
     }
 }
