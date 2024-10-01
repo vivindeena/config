@@ -3,7 +3,7 @@ return{
     event = "VeryLazy",
     init = function()
         vim.o.timeout = true
-        vim.o.timeout = 350
+        vim.o.timeoutlen = 350
     end,
     opts = {},
 }
