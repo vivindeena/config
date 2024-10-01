@@ -4,8 +4,8 @@
 - [x] Basic Remaps
 - [x] treesitter
 - [x] gitsigns, fugitive, diffview
-- [ ] LSP - Mason, mason-lsp-config, nvim-lsp-config
-- [ ] Linter and Formatter - none-ls, isort and black,
+- [x] LSP - Mason, mason-lsp-config, nvim-lsp-config
+- [x] Linter and Formatter - none-ls, isort and black,
 - [ ] Snippets
 
 

@@ -16,26 +16,25 @@ return {
                     end
 
                     local bufnr = vim.api.nvim_get_current_buf()
-                    local opts = {buffer = bufnr, remap = false}
+                    local opts = { buffer = bufnr, remap = false }
 
                     -- rebase always
                     vim.keymap.set("n", "<leader>p", function()
-                        vim.cmd.Git({'pull'})
+                        vim.cmd.Git({ "pull" })
                     end, opts)
                 end,
             })
 
-
             vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>")
             vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>")
-        end
+        end,
     },
     {
         "lewis6991/gitsigns.nvim",
         config = function()
             require("gitsigns").setup({})
             vim.keymap.set("n", "<leader>gld", ":Gitsigns preview_hunk_inline<CR>", {})
-        end
+        end,
     },
     {
         "kdheepak/lazygit.nvim",
@@ -50,7 +49,7 @@ return {
             "nvim-lua/plenary.nvim",
         },
         keys = {
-            { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-        }
-    }
+            { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+        },
+    },
 }
