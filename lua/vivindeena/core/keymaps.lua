@@ -19,16 +19,21 @@ keymap.set("n", "N", "Nzzzv", { desc = "Previous search result and center" })
 
 keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting clipboard" })
 
-keymap.set({"n", "v"}, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
+keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
 
-keymap.set({"n", "v"}, "<leader>d", [["_d]], { desc = "Delete without yanking" })
+keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 
-keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Substitute word under cursor" })
+keymap.set(
+	"n",
+	"<leader>sr",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Substitute word under cursor" }
+)
 
 keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>", { silent = true, desc = "Close current tab" })
 
- --[[
+--[[
  -- more remaps
  -- https://youtu.be/w7i4amO_zaE?t=1634
  -- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/remap.lua
@@ -39,10 +44,8 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) 
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 
-
 -- Training Wheels
-keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
+keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
+keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
+keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
+keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')

@@ -47,4 +47,3 @@ opt.updatetime = 50
     print("Setting colorcolumn for Python to:", vim.wo.colorcolumn)
   end,
 })]]
-
