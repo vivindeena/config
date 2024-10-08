@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
-keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open file explorer" })
+keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected line down" })
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected line up" })
@@ -24,12 +24,7 @@ keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" }
 
 keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 
-keymap.set(
-	"n",
-	"<leader>sr",
-	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "Substitute word under cursor" }
-)
+keymap.set( "n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Substitute word under cursor" })
 
 keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>", { silent = true, desc = "Close current tab" })
 
@@ -38,6 +33,8 @@ keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>", { silent = true, desc = "Clos
  -- https://youtu.be/w7i4amO_zaE?t=1634
  -- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/remap.lua
  ]]
+
+keymap.set("n", "Q", "<nop>")
 
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
