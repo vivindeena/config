@@ -27,7 +27,6 @@ brew install ripgrep
 brew install jesseduffield/lazygit/lazygit
 
 # install menslo-nerd-font
-brew tap homebrew/cask-fonts
 brew install font-meslo-lg-nerd-font
 
 # install alacritty
