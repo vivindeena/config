@@ -44,7 +44,7 @@
 -- 	end,
 -- }
 return {
-    'vivindeena/vn-night.nvim',
+    dir='/Users/vivin/Documents/OSS/vn-night.nvim',
 	priority = 1000,
     config = function ()
         require('vn-night').setup()
