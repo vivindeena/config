@@ -3,6 +3,7 @@ return {
 	branch = "harpoon2",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
+        vim.notify = require("notify")
 		local harpoon = require("harpoon")
 		harpoon:setup()
 
@@ -19,18 +20,22 @@ return {
 		-- Navigate to specific Harpoon files with <C-h>, <C-j>, <C-k>, <C-l>
 		vim.keymap.set("n", "<C-h>", function()
 			harpoon:list():select(1)
+            vim.notify("In harpoon file 1", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
 		end, { desc = "Jump to first Harpoon file" })
 
 		vim.keymap.set("n", "<C-j>", function()
 			harpoon:list():select(2)
+            vim.notify("In harpoon file 2", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
 		end, { desc = "Jump to second Harpoon file" })
 
 		vim.keymap.set("n", "<C-k>", function()
 			harpoon:list():select(3)
+            vim.notify("In harpoon file 3", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
 		end, { desc = "Jump to third Harpoon file" })
 
 		vim.keymap.set("n", "<C-l>", function()
 			harpoon:list():select(4)
+            vim.notify("In harpoon file 4", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
 		end, { desc = "Jump to fourth Harpoon file" })
 
 		-- Replace files in specific Harpoon slots with <leader><C-h>, <leader><C-j>, etc.
