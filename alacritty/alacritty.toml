@@ -1,4 +1,9 @@
 
+# [general]
+# import = [
+#     "~/.config/alacritty/themes/themes/rose-pine.toml"
+# ]
+
 [env]
 TERM = "xterm-256color"
 
@@ -29,10 +34,12 @@ mouse.enabled = true
 binding = { key = "U", mods = "Control|Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
 
-[general]
-import = [
-    "~/.config/alacritty/themes/themes/rose-pine.toml"
-]
+[cursor]
+  [cursor.style]
+  shape = "Beam"
+  blinking= "On"
+  [cursor.vi_mode_style]
+  shape = "Block"
+  blinking= "Off"
 
-[cursor.style]
-shape                 = "Beam"
+
