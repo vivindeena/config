@@ -33,3 +33,6 @@ regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:
 import = [
     "~/.config/alacritty/themes/themes/rose-pine.toml"
 ]
+
+[cursor.style]
+shape                 = "Beam"
