@@ -1,8 +1,8 @@
 
-# [general]
-# import = [
-#     "~/.config/alacritty/themes/themes/rose-pine.toml"
-# ]
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/rose-pine.toml"
+]
 
 [env]
 TERM = "xterm-256color"
