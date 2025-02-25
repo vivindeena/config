@@ -86,10 +86,4 @@ M.general = {
   }
 }
 
-
-
-
-
-
-
 return M

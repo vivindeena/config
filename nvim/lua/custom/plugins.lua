@@ -55,5 +55,19 @@ local plugins = {
       vim.cmd [[silent! GoInstallDeps]]
     end,
   },
+  {
+    "hrsh7th/nvim-cmp",
+    config = function(_, opts)
+      local cmp = require("cmp")
+
+      local mymappings = {
+        ["<C-k>"] = cmp.mapping.select_prev_item(),
+        ["<C-j>"] = cmp.mapping.select_next_item(),
+      }
+
+      opts.mapping = vim.tbl_deep_extend("force", opts.mapping, mymappings)
+      cmp.setup(opts)
+    end,
+  }
 }
 return plugins
