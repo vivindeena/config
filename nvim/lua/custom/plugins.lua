@@ -52,7 +52,7 @@ local plugins = {
       require("core.utils").load_mappings("gopher")
     end,
     build = function()
-      vim.cmd [[silent! GoInstallDeps]]
+      vim.cmd.GoInstallDeps()
     end,
   },
   {

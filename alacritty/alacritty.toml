@@ -34,4 +34,6 @@ regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:
   shape = "Block"
   blinking= "Off"
 
+[scrolling]
+history = 1000
 
