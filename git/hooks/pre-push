@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Get JavaScript and JSX files that differ from the remote branch
+FILES=$(git diff HEAD origin/$(git rev-parse --abbrev-ref HEAD) --name-only | grep -E '\.(js|jsx)$')
+
+if [ -n "$FILES" ]; then
+    # Search for 'console.' statements in these files
+    MATCHES=$(grep -nE 'console\.' $FILES 2>/dev/null)
+
+    if [ -n "$MATCHES" ]; then
+        echo "❌ Push aborted: Found console statements in the following files:"
+        echo "$MATCHES"
+        exit 1
+    fi
+fi
+
+exit 0
