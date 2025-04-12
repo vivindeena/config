@@ -94,7 +94,8 @@ alias co="bat"
 
 
 # ---- Eza (better ls) -----
-alias ll="eza --color=always --long --git --icons=always"
+alias ls="eza -l --git --git-repos --icons=always --color=always --color-scale=all --color-scale-mode=gradient --no-time --no-user --no-permissions --no-filesize"
+alias ll="eza -lao --git --git-repos --icons=always --color=always --color-scale=all --color-scale-mode=gradient --no-permissions"
 
 [[ -s "/Users/vivin/.gvm/scripts/gvm" ]] && source "/Users/vivin/.gvm/scripts/gvm"
 
@@ -109,7 +110,9 @@ alias ga='git add -A'
 alias gu='git add -u'
 alias gc='git commit'
 alias gp='git pull'
+alias gpo='git push origin'
 alias gl='git log --oneline --graph --decorate'
+alias grs='git restore --staged .'
 
 
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
