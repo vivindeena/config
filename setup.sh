@@ -47,6 +47,9 @@ brew install fd
 # install bat
 brew install bat
 
+
+brew install zsh-you-should-use
+
 #setting up bat
 mkdir -p "$(bat --config-dir)/themes"
 cd "$(bat --config-dir)/themes"

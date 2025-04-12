@@ -94,10 +94,25 @@ alias co="bat"
 
 
 # ---- Eza (better ls) -----
-
-alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
-alias lss="/bin/ls"
+alias ll="eza --color=always --long --git --icons=always"
 
 [[ -s "/Users/vivin/.gvm/scripts/gvm" ]] && source "/Users/vivin/.gvm/scripts/gvm"
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+# ------ Git Aliases ------
+alias gs='git status'
+alias gd='git diff'
+alias ga='git add -A'
+alias gu='git add -u'
+alias gc='git commit'
+alias gp='git pull'
+alias gl='git log --oneline --graph --decorate'
+
+
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
+
+source /opt/homebrew/share/zsh-you-should-use/you-should-use.plugin.zsh
+
