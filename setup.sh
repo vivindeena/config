@@ -47,8 +47,9 @@ brew install fd
 # install bat
 brew install bat
 
-
 brew install zsh-you-should-use
+
+brew install btop
 
 #setting up bat
 mkdir -p "$(bat --config-dir)/themes"
