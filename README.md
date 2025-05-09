@@ -9,3 +9,5 @@ My basic config for tmux, nvim, and my terminal of choice alacritty
 TODO's
 - [ ] Move Keybindings from old config to nvChad
 - [ ] Copy over missing plugins, like harpoon, and notify(notify has nvchad support check what to do with that )
+- [ ] move to nvchad2.0 or move out of nvchad 
+- [ ] make the setup modular using fe-masters prime tutorial 

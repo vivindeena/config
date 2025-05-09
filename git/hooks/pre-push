@@ -1,16 +1,49 @@
 #!/bin/bash
 
-# Get JavaScript and JSX files that differ from the remote branch
-FILES=$(git diff HEAD origin/$(git rev-parse --abbrev-ref HEAD) --name-only | grep -E '\.(js|jsx)$')
+# Protect main and master branches
+protected_branches=("main" "master")
+current_branch=$(git rev-parse --abbrev-ref HEAD)
 
-if [ -n "$FILES" ]; then
-    # Search for 'console.' statements in these files
-    MATCHES=$(grep -nE 'console\.' $FILES 2>/dev/null)
+# List of repositories to apply rules to
+restricted_repos=("Temperstack")
+repo_path=$(git rev-parse --show-toplevel)
 
-    if [ -n "$MATCHES" ]; then
-        echo "❌ Push aborted: Found console statements in the following files:"
-        echo "$MATCHES"
-        exit 1
+# Function to check if current repo is in the restricted list
+is_restricted_repo() {
+    for restricted in "${restricted_repos[@]}"; do
+        if [[ "$repo_path" == *"$restricted"* ]]; then
+            return 0 # Found a match (true in bash)
+        fi
+    done
+    return 1 # No match found (false in bash)
+}
+
+# Check if we're in a restricted repo
+if is_restricted_repo; then
+    # Exit early if trying to push to a protected branch
+    for branch in "${protected_branches[@]}"; do
+        if [[ "$current_branch" == "$branch" ]]; then
+            echo "❌ Push to '$branch' is blocked by pre-push hook!"
+            echo "➡️  Please push to a feature branch and open a PR instead."
+            exit 1
+        fi
+    done
+
+    # Only run if the remote branch exists
+    if git rev-parse --verify origin/"$current_branch" &>/dev/null; then
+        # Get changed JavaScript and JSX files compared to remote
+        FILES=$(git diff --name-only HEAD origin/"$current_branch" | grep -E '\.(js|jsx)$')
+
+        if [ -n "$FILES" ]; then
+            # Use ripgrep to efficiently check all files for console statements
+            MATCHES=$(echo "$FILES" | xargs rg 'console\.' --vimgrep 2>/dev/null || true)
+
+            if [ -n "$MATCHES" ]; then
+                echo "❌ Push aborted: Found console statements in the following files:"
+                echo "$MATCHES"
+                exit 1
+            fi
+        fi
     fi
 fi
 
