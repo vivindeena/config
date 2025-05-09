@@ -6,7 +6,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # ---- remaps ----
-alias lg="lazygit"
 alias vim="nvim"
 
 
@@ -99,23 +98,26 @@ alias ll="eza -lao --git --git-repos --icons=always --color=always --color-scale
 
 [[ -s "/Users/vivin/.gvm/scripts/gvm" ]] && source "/Users/vivin/.gvm/scripts/gvm"
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
 
 # ------ Git Aliases ------
 alias gs='git status'
 alias gd='git diff'
+alias gds='git diff --staged'
 alias ga='git add -A'
 alias gu='git add -u'
+alias gap='git add -p'
 alias gc='git commit'
 alias gp='git pull'
-alias gpo='git push origin'
 alias gl='git log --oneline --graph --decorate'
 alias grs='git restore --staged .'
-
+alias gpo='git push'
+alias gco='git checkout'
+alias gsh='git stash'
+alias gshp='git stash pop'
 
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
+
+export PATH="/opt/nvim/bin:$PATH"
 
 source /opt/homebrew/share/zsh-you-should-use/you-should-use.plugin.zsh
 
