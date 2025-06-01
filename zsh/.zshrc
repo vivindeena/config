@@ -5,14 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# ---- remaps ----
-alias vim="nvim"
-
-
 # -- default-editor ----
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-export BROWSER="/Users/vivin/Applications/Arc.app"
 
 
 # ---- p10k theme source ----
@@ -88,34 +83,12 @@ export FZF_DEFAULT_OPTS="
 	--color=spinner:#f6c177,info:#9ccfd8
 	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 
-# ----- Bat (better cat) -----
-alias co="bat" 
-
-
-# ---- Eza (better ls) -----
-alias ls="eza -l --git --git-repos --icons=always --color=always --color-scale=all --color-scale-mode=gradient --no-time --no-user --no-permissions --no-filesize"
-alias ll="eza -lao --git --git-repos --icons=always --color=always --color-scale=all --color-scale-mode=gradient --no-permissions"
 
 [[ -s "/Users/vivin/.gvm/scripts/gvm" ]] && source "/Users/vivin/.gvm/scripts/gvm"
 
 
-# ------ Git Aliases ------
-alias gs='git status'
-alias gd='git diff'
-alias gds='git diff --staged'
-alias ga='git add -A'
-alias gu='git add -u'
-alias gap='git add -p'
-alias gc='git commit'
-alias gp='git pull'
-alias gl='git log --oneline --graph --decorate'
-alias grs='git restore --staged .'
-alias gpo='git push'
-alias gco='git checkout'
-alias gsh='git stash'
-alias gshp='git stash pop'
-
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
+[ -f ~/.zsh_aliases_private ] && source ~/.zsh_aliases_private
 
 export PATH="/opt/nvim/bin:$PATH"
 
