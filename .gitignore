@@ -2,3 +2,5 @@ lazy-lock.json
 .DS_Store
 fzf-git.sh
 *.log
+
+configstore

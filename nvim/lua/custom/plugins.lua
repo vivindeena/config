@@ -4,6 +4,9 @@ local plugins = {
     opts = {
       ensure_installed = {
         "gopls",
+        "typescript-language-server",
+        "eslint-lsp",
+        "prettier"
       },
     },
   },

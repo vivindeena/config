@@ -23,3 +23,6 @@ alias gshp='git stash pop'
 # ---- Eza (better ls) -----
 alias ls="eza -l --git --git-repos --icons=always --color=always --color-scale=all --color-scale-mode=gradient --no-time --no-user --no-permissions --no-filesize"
 alias ll="eza -lao --git --git-repos --icons=always --color=always --color-scale=all --color-scale-mode=gradient --no-permissions"
+
+
+alias nv='NVIM_APPNAME="nvim-new" vim'
