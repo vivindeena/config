@@ -94,6 +94,8 @@ export PATH="/opt/nvim/bin:$PATH"
 
 source /opt/homebrew/share/zsh-you-should-use/you-should-use.plugin.zsh
 
+# tmux sessionizer binding
+bindkey -s ^f "tms\n"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

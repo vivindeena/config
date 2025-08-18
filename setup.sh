@@ -3,7 +3,6 @@
 # install xcode-select
 xcode-select --install
 
-
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -73,7 +72,6 @@ git clone https://github.com/junegunn/fzf-git.sh.git $HOME/.config/zsh/
 rm -f $HOME/.zshrc
 sn $HOME/.config/zsh/.zshrc
 
-
-
-
-
+# add tms (tmux sessionizer) to PATH
+mkdir -p $HOME/.local/bin
+ln -sf $HOME/.config/tmux/sessionizer/tms /usr/local/bin/tms
