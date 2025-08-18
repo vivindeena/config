@@ -1,5 +1,6 @@
 local M = {}
 
+-- DAP mappings
 M.dap = {
   plugin = true,
   n = {
@@ -18,6 +19,7 @@ M.dap = {
   }
 }
 
+-- DAP Go mappings
 M.dap_go = {
   plugin = true,
   n = {
@@ -36,6 +38,7 @@ M.dap_go = {
   }
 }
 
+-- Gopher mappings
 M.gopher = {
   plugin = true,
   n = {
@@ -50,38 +53,60 @@ M.gopher = {
   }
 }
 
+-- General mappings
 M.general = {
   n = {
+    -- Clear search highlights
     ["<leader>nh"] = { ":nohl<CR>", "Clear search highlights" },
+
+    -- Scroll and center
     ["<C-d>"] = { "<C-d>zz", "Scroll down and center" },
     ["<C-u>"] = { "<C-u>zz", "Scroll up and center" },
+
+    -- Search result and center
     ["n"] = { "nzzzv", "Next search result and center" },
     ["N"] = { "Nzzzv", "Previous search result and center" },
+
+    -- Yank line to system clipboard
     ["<leader>Y"] = { [["+Y]], "Yank line to system clipboard" },
+
+    -- Window management
     ["<leader>sv"] = { "<C-w>v", "Split window vertically" }, -- split window vertically
     ["<leader>sh"] = { "<C-w>s", "Split window horizontally" }, -- split window horizontally
     ["<leader>se"] = { "<C-w>=", "Make splits equal size" }, -- make split windows equal width & height
     ["<leader>sx"] = { "<cmd>close<CR>", "Close current split" }, -- close current split window
 
+    -- Substitute word under cursor
     ["<leader>sr"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Substitute word under cursor" },
+
+    -- Tab management
     ["<leader>tc"] = { "<cmd>tabclose<CR>", "Close current tab", opts = { silent = true } },
+
+    -- Disable Q
     ["Q"] = { "<nop>" },
 
+    -- Delete without yanking
     ["<leader>d"] = { [["_d]], "Delete without yanking" },
 
+    -- Yank to system clipboard
     ["<leader>y"] = { [["+y]], "Yank to system clipboard" },
 
   },
   v = {
+    -- Move selected line up and down
     ["J"] = { ":m '>+1<CR>gv=gv", "Move selected line down" },
     ["K"] = { ":m '<-2<CR>gv=gv", "Move selected line up" },
+
+    -- Yank to system clipboard
     ["<leader>y"] = { [["+y]], "Yank to system clipboard" },
 
+    -- Delete without yanking
     ["<leader>d"] = { [["_d]], "Delete without yanking" },
 
   },
 
   x = {
+    -- Paste without overwriting clipboard
     ["<leader>p"] = { [["_dP]], "Paste without overwriting clipboard" },
   }
 }

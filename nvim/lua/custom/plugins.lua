@@ -1,4 +1,5 @@
 local plugins = {
+  -- Mason for managing LSP servers, DAP servers, linters, and formatters
   {
     "williamboman/mason.nvim",
     opts = {
@@ -10,6 +11,8 @@ local plugins = {
       },
     },
   },
+
+  -- Treesitter for syntax highlighting and more
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -18,12 +21,16 @@ local plugins = {
       }
     }
   },
+
+  -- Debug Adapter Protocol for debugging
   {
     "mfussenegger/nvim-dap",
     init = function()
       require("core.utils").load_mappings("dap")
     end
   },
+
+  -- DAP extension for Go
   {
     "leoluz/nvim-dap-go",
     ft = "go",
@@ -33,13 +40,20 @@ local plugins = {
       require("core.utils").load_mappings("dap_go")
     end
   },
+
+  -- LSP configuration
   {
     "neovim/nvim-lspconfig",
     config = function()
+      require("lspconfig").setup({
+        deprecation_warnings = false,
+      })
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end,
   },
+
+  -- Null-ls for formatters and linters
   {
     "jose-elias-alvarez/null-ls.nvim",
     ft = "go",
@@ -47,6 +61,8 @@ local plugins = {
       return require "custom.configs.null-ls"
     end,
   },
+
+  -- Go development plugin
   {
     "olexsmir/gopher.nvim",
     ft = "go",
@@ -58,6 +74,8 @@ local plugins = {
       vim.cmd.GoInstallDeps()
     end,
   },
+
+  -- Autocompletion engine
   {
     "hrsh7th/nvim-cmp",
     config = function(_, opts)

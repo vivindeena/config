@@ -1,77 +1,120 @@
 #!/bin/zsh
 
-# install xcode-select
-xcode-select --install
+# Exit immediately if a command exits with a non-zero status.
+set -e
 
-# install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# --- Helper Functions --- #
 
-# install git
-brew install git
+# Check if a command exists
+command_exists() {
+  command -v "$1" &> /dev/null
+}
 
-# install gh
-brew install gh
-gh auth login
+# Check if a brew package is installed
+brew_package_installed() {
+  brew list --formula | grep -q "^${1%%/*}$"
+}
 
-#cloning .config repo from github
-git clone git@github.com:vivindeena/config.git $HOME/.config
+# --- Install Homebrew --- #
+if ! command_exists brew; then
+  echo "Homebrew not found. Installing..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  echo "Homebrew already installed."
+fi
 
-# install neovim
-brew install neovim
+# --- Install Brew Packages --- #
+brews=(
+  git
+  gh
+  neovim
+  ripgrep
+  jesseduffield/lazygit/lazygit
+  font-meslo-lg-nerd-font
+  alacritty
+  tmux
+  fzf
+  # fd is used by fzf to find files
+  fd
+  bat
+  zsh-you-should-use
+  btop
+  git-delta
+  tldr
+  eza
+  go
+)
 
-# install ripgrep
-brew install ripgrep
+for pkg in "${brews[@]}"; do
+  if ! brew_package_installed "$pkg"; then
+    echo "Installing $pkg..."
+    brew install "$pkg"
+  else
+    echo "$pkg already installed."
+  fi
+done
 
-# install lazygit
-brew install jesseduffield/lazygit/lazygit
+# --- Setup Bat --- #
+if [ ! -d "$(bat --config-dir)/themes" ]; then
+  echo "Setting up bat themes..."
+  mkdir -p "$(bat --config-dir)/themes"
+  cd "$(bat --config-dir)/themes"
+  curl --remote-name-all https://raw.githubusercontent.com/rose-pine/tm-theme/main/dist/rose-pine.tmTheme
+  bat cache --build
+else
+  echo "bat themes already set up."
+fi
 
-# install menslo-nerd-font
-brew install font-meslo-lg-nerd-font
+# --- Setup NVM and Node.js --- #
+export NVM_DIR="$HOME/.nvm"
+if [ ! -s "$NVM_DIR/nvm.sh" ]; then
+  echo "Installing nvm..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+fi
 
-# install alacritty
-brew install alacritty
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# install tmux
-brew install tmux
+if ! nvm list | grep -q "lts/"; then
+  echo "Installing latest LTS version of Node.js..."
+  nvm install --lts
+  nvm alias default 'lts/*'
+else
+  echo "Latest LTS version of Node.js already installed."
+fi
 
-# install fzf
-brew install fzf
+# --- Setup GVM --- #
+if [ ! -s "$HOME/.gvm/scripts/gvm" ]; then
+  echo "Installing gvm..."
+  bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+else
+  echo "gvm already installed."
+fi
 
-# install fd
-brew install fd
+# --- Clone fzf-git --- #
+if [ ! -d "$HOME/.config/zsh/fzf-git" ]; then
+  echo "Cloning fzf-git..."
+  git clone https://github.com/junegunn/fzf-git.sh.git "$HOME/.config/zsh/fzf-git"
+else
+  echo "fzf-git already cloned."
+fi
 
-# setup fd
-brew install fd
+# --- Symlink .zshrc --- #
+if [ ! -L "$HOME/.zshrc" ]; then
+  echo "Creating .zshrc symlink..."
+  rm -f "$HOME/.zshrc"
+  ln -s "$HOME/.config/zsh/.zshrc" "$HOME/.zshrc"
+else
+  echo ".zshrc symlink already exists."
+fi
 
-# install bat
-brew install bat
+# --- Symlink tms --- #
+if [ ! -L "/usr/local/bin/tms" ]; then
+  echo "Creating tms symlink..."
+  mkdir -p "$HOME/.local/bin"
+  ln -sf "$HOME/.config/tmux/sessionizer/tms" "/usr/local/bin/tms"
+else
+  echo "tms symlink already exists."
+fi
 
-brew install zsh-you-should-use
-
-brew install btop
-
-#setting up bat
-mkdir -p "$(bat --config-dir)/themes"
-cd "$(bat --config-dir)/themes"
-curl --remote-name-all https://raw.githubusercontent.com/rose-pine/tm-theme/main/dist/themes/rose-pineetmTheme
-bat cache --build
-
-# git delta
-brew install git-delta
-
-# tldr
-brew install tldr
-
-# install eza
-brew install eza
-
-# cloning fzf-git
-git clone https://github.com/junegunn/fzf-git.sh.git $HOME/.config/zsh/
-
-# creating a symlink between ~/.config/zsh/.zshrc and ~/.zshrc
-rm -f $HOME/.zshrc
-sn $HOME/.config/zsh/.zshrc
-
-# add tms (tmux sessionizer) to PATH
-mkdir -p $HOME/.local/bin
-ln -sf $HOME/.config/tmux/sessionizer/tms /usr/local/bin/tms
+echo "Setup complete!"

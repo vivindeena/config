@@ -1,8 +1,8 @@
-local config = require("plugins.configs.lspconfig")
+local config = require "plugins.configs.lspconfig"
 local on_attach = config.on_attach
 local capabilities = config.capabilities
 
-local lspconfig = require("lspconfig")
+local lspconfig = require "lspconfig"
 local util = require "lspconfig/util"
 
 lspconfig.gopls.setup {
@@ -27,17 +27,16 @@ lspconfig.gopls.setup {
       end,
       "LSP hover",
     },
-
-  }
+  },
 }
 
-lspconfig.tsserver.setup{
+lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   init_options = {
     preferences = {
       disableSuggestions = true,
-    }
+    },
   },
   n = {
     ["L"] = {
@@ -46,7 +45,5 @@ lspconfig.tsserver.setup{
       end,
       "LSP hover",
     },
-
-  }
-
+  },
 }
