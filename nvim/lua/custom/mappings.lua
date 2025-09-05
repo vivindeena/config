@@ -82,6 +82,11 @@ M.general = {
     -- Tab management
     ["<leader>tc"] = { "<cmd>tabclose<CR>", "Close current tab", opts = { silent = true } },
 
+    -- Git worktree
+    ["<leader>gw"] = { function() require("telescope").extensions.git_worktree.git_worktree() end, "Switch git worktreie" },
+    ["<leader>gwa"] = { function() require("telescope").extensions.git_worktree.create_git_worktree() end, "Create a new git worktreie" },
+
+
     -- Disable Q
     ["Q"] = { "<nop>" },
 
