@@ -4,6 +4,7 @@
 PROJECT_DIRS=(
   "$HOME/Documents/Projects/"
   "$HOME/.config"
+  "$HOME/Documents/srew-softwares/"
 )
 FZF_CMD="fzf"                        # fuzzy finder (can be fzf-tmux, etc.)
 EDITOR_CMD="vim"                     # editor to launch in vim window
