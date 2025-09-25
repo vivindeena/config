@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+source "$(dirname "${BASH_SOURCE[0]}")/../scripts/os-detect.sh"
+
+if [[ "$OS" == "macOS" ]]; then
+  if ! xcode-select -p &> /dev/null; then
+    echo "Xcode Command Line Tools not found. Please install them by running: xcode-select --install"
+    exit 1
+  fi
+
+  if ! command -v brew &> /dev/null; then
+    echo "Homebrew not found. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  else
+    echo "Homebrew already installed."
+  fi
+fi

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ ! -d "$(bat --config-dir)/themes" ]; then
+  echo "Setting up bat themes..."
+  mkdir -p "$(bat --config-dir)/themes"
+  cd "$(bat --config-dir)/themes"
+  curl --remote-name-all https://raw.githubusercontent.com/rose-pine/tm-theme/main/dist/rose-pine.tmTheme
+  bat cache --build
+else
+  echo "bat themes already set up."
+fi

@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+set -e
+
+source "$(dirname "${BASH_SOURCE[0]}")/../scripts/os-detect.sh"
+
+# --- Install Neovim from source --- #
+
+# 1. Install build dependencies
+if [[ "$OS" == "macOS" ]]; then
+  install ninja cmake gettext curl
+
+  # Note: If you see Wget certificate errors (for older macOS versions less than 10.10):
+  # brew install curl-ca-bundle
+  # echo CA_CERTIFICATE=$(brew --prefix curl-ca-bundle)/share/ca-bundle.crt >> ~/.wgetrc
+
+  # Note: If you see 'stdio.h' file not found, try the following:
+  # open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg
+
+elif [[ "$OS" == "Arch" ]]; then
+  install base-devel cmake unzip ninja tree-sitter curl
+fi
+
+# 2. Clone Neovim repository
+if [ ! -d "$HOME/tools/neovim" ]; then
+  echo "Cloning Neovim v0.10.4 repository..."
+  git clone -b v0.10.4 https://github.com/neovim/neovim.git "$HOME/tools/neovim"
+else
+  echo "Neovim repository already cloned."
+fi
+
+# 3. Build and install
+cd "$HOME/tools/neovim"
+
+echo "Building Neovim from source..."
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+
+echo "Installing Neovim..."
+sudo make install
+
+echo "Neovim v0.10.4 installation complete."

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ ! -s "$HOME/.gvm/scripts/gvm" ]; then
+  echo "Installing gvm..."
+  bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+else
+  echo "gvm already installed."
+fi

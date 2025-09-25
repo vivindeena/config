@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ ! -d "$HOME/.config/zsh/fzf-git" ]; then
+  echo "Cloning fzf-git..."
+  git clone https://github.com/junegunn/fzf-git.sh.git "$HOME/.config/zsh/fzf-git"
+else
+  echo "fzf-git already cloned."
+fi

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+# This check is to avoid running this script if bat is not installed
+if ! command -v bat &> /dev/null; then
+    echo "bat not found, skipping theme setup."
+    exit 0
+fi
+
+if [ ! -d "$(bat --config-dir)/themes" ]; then
+  echo "Setting up bat themes..."
+  mkdir -p "$(bat --config-dir)/themes"
+  cd "$(bat --config-dir)/themes"
+  curl --remote-name-all https://raw.githubusercontent.com/rose-pine/tm-theme/main/dist/rose-pine.tmTheme
+  bat cache --build
+else
+  echo "bat themes already set up."
+fi
