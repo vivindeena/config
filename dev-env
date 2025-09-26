@@ -55,8 +55,21 @@ copy_file() {
 }
 
 # --- Main Logic --- #
-# Example usage (will be replaced with actual dotfile copying)
-# copy_dir .config $XDG_CONFIG_HOME
-# copy_file .specialrc ~/
 
-echo "dev-env script created. You can now add your dotfile copying logic here."
+# --- Symlink .zshrc --- #
+if [ ! -L "$HOME/.zshrc" ]; then
+  log "Creating .zshrc symlink..."
+  execute rm -f "$HOME/.zshrc"
+  execute ln -s "$HOME/.config/zsh/.zshrc" "$HOME/.zshrc"
+else
+  log ".zshrc symlink already exists."
+fi
+
+# --- Symlink tms --- #
+if [ ! -L "/usr/local/bin/tms" ]; then
+  log "Creating tms symlink..."
+  execute mkdir -p "$HOME/.local/bin"
+  execute ln -sf "$HOME/.config/tmux/sessionizer/tms" "/usr/local/bin/tms"
+else
+  log "tms symlink already exists."
+fi
