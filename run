@@ -16,12 +16,26 @@ log() {
 }
 
 execute() {
-    log "execute: $@"
     if [[ $dry == "1" ]]; then
-        return
+        log "will run: $@"
+    else
+        log "running: $@"
+        "$@"
     fi
+}
 
-    "$@"
+print_help() {
+    echo "Usage: ./run [options] [filter]"
+    echo ""
+    echo "Options:"
+    echo "  -h, --help      Show this help message."
+    echo "  -d, --dry       Perform a dry run without executing any scripts. Alias: --dry-run"
+    echo ""
+    echo "Filter:"
+    echo "  A string to filter the scripts to be run. Only scripts whose path contains the filter string will be executed."
+    echo ""
+    echo "Example:"
+    echo "  ./run -d btop   # Perform a dry run of scripts containing 'btop' in their name."
 }
 
 # --- Remote Execution --- #
@@ -40,25 +54,36 @@ filter=""
 dry="0"
 
 cd "$script_dir"
-scripts=$(find runs -maxdepth 1 -mindepth 1 -executable -type f)
 
-while [[ $# > 0 ]]; do
-    if [[ "$1" == "--dry" ]]; then
-        dry="1"
-    else
-        filter="$1"
-    fi
-    shift
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help)
+            print_help
+            exit 0
+            ;;
+        -d|--dry|--dry-run)
+            dry="1"
+            shift # past argument
+            ;;
+        *)    # unknown option
+            if [[ -z "$filter" ]]; then # Only take the first non-option as filter
+                filter="$1"
+            fi
+            shift # past argument
+            ;;
+    esac
 done
 
-log "run: filter=$filter"
+scripts=$(find runs -maxdepth 1 -mindepth 1 -perm +111 -type f)
+
+if [[ -n "$filter" ]] || [[ "$dry" != "1" ]]; then
+    log "run: filter=$filter"
+fi
 
 for script in $scripts; do
-    if echo "$script" | grep -qv "$filter"; then
-        log "filtered: $filter -- $script"
+    if [[ -n "$filter" ]] && ! echo "$script" | grep -q "$filter"; then
         continue
     fi
-    log "running script: $script"
     execute "./$script"
 done
 

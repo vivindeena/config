@@ -41,3 +41,4 @@ TODO's
 - [ ] Copy over missing plugins, like harpoon, and notify(notify has nvchad support check what to do with that )
 - [ ] move to nvchad2.0 or move out of nvchad
 - [x] make the setup modular using fe-masters prime tutorial
+- [ ] Move to Ghosty, and chose a font that supports ligatures
