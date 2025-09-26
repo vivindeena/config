@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+if brew list zoxide &>/dev/null; then
+    echo "zoxide already installed."
+else
+    echo "Installing zoxide..."
+    brew install zoxide
+fi

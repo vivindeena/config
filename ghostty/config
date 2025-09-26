@@ -1,0 +1,28 @@
+# Theme
+theme = "Rose Pine"
+
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-size = 16
+
+# Window
+background-opacity = 0.85
+background-blur = true
+window-padding-x = 10
+window-padding-y = 10
+window-decoration = none
+maximize = true
+confirm-close-surface = false
+
+# Mac settings
+macos-option-as-alt = true
+
+# Cursor
+cursor-style = block_hollow
+
+# Scrolling
+scrollback-limit = 1000
+
+# Links (partial replacement for Alacritty hints)
+# link = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\u0000-\\u001F\\u007F-\\u009F<>\"\\\\s{-}\\^⟨⟩`]+"
+link-url = true

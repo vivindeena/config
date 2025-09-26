@@ -1,6 +1,3 @@
-# ------------------------------------------------------------------------------
-# Powerlevel10k Instant Prompt
-# ------------------------------------------------------------------------------
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -9,32 +6,28 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # ------------------------------------------------------------------------------
+# Homebrew
+# ------------------------------------------------------------------------------
+# Ensures Homebrew environment is set up correctly.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# ------------------------------------------------------------------------------
 # Editor
 # ------------------------------------------------------------------------------
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # ------------------------------------------------------------------------------
-# Powerlevel10k Theme
+# History (Upgraded)
 # ------------------------------------------------------------------------------
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# ------------------------------------------------------------------------------
-# History
-# ------------------------------------------------------------------------------
-HISTFILE=$HOME/.zhistory
-SAVEHIST=1000
-HISTSIZE=999
-setopt share_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_verify
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+setopt appendhistory sharehistory
+setopt hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_ignore_dups hist_find_no_dups
 
 # ------------------------------------------------------------------------------
-# Keybindings
+# Keybindings (Preserved)
 # ------------------------------------------------------------------------------
 # Arrow navigation for history
 bindkey '^[[A' history-search-backward
@@ -44,16 +37,33 @@ bindkey '^[[B' history-search-forward
 bindkey -s ^f "tms\n"
 
 # ------------------------------------------------------------------------------
-# Zsh Plugins
+# Zinit Plugin Manager
 # ------------------------------------------------------------------------------
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-you-should-use/you-should-use.plugin.zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Add in Powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+zinit light MichaelAquilina/zsh-you-should-use
+
+# Load completions system
+autoload -Uz compinit && compinit
 
 # ------------------------------------------------------------------------------
-# FZF
+# Shell Integrations (FZF, Zoxide)
 # ------------------------------------------------------------------------------
 eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
 # -- Use fd instead of fzf --
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
@@ -123,3 +133,6 @@ export NVM_DIR="$HOME/.nvm"
 # Path
 # ------------------------------------------------------------------------------
 export PATH="/opt/nvim/bin:$PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

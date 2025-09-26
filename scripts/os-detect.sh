@@ -16,7 +16,7 @@ fi
 if [[ "$OS" == "macOS" ]]; then
   install() {
     for pkg in "$@"; do
-      if ! brew list --formula | grep -q "^${pkg%%/*}$"; then
+      if ! (brew list --formula | grep -q "^${pkg%%/*}$" || brew list --cask | grep -q "^${pkg%%/*}$"); then
         echo "Installing $pkg..."
         brew install "$pkg"
       else

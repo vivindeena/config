@@ -4,4 +4,4 @@ set -e
 
 source "$(dirname "${BASH_SOURCE[0]}")/../scripts/os-detect.sh"
 
-install font-meslo-lg-nerd-font
+install font-jetbrains-mono-nerd-font
