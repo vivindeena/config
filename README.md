@@ -12,9 +12,7 @@ TODO's
 - [ ] Move Keybindings from old config to nvChad
 - [ ] Copy over missing plugins, like harpoon, and notify(notify has nvchad support check what to do with that )
 - [ ] move to nvchad2.0 or move out of nvchad
-- [x] Move to Ghosty, and chose a font that supports ligatures
-- [x] Add zoxide, and put a shell promt to tell to zoxide when using ls
 - [ ] Add caropasse
-- [x] Add pgcli
+- [ ] Add sesh
 - [ ] Investigate starship, or oh-my-posh
 
