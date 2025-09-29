@@ -34,7 +34,20 @@ bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
 # tmux sessionizer binding
-bindkey -s ^f "tms\n"
+function sesh-sessions() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+    zle reset-prompt > /dev/null 2>&1 || true
+    [[ -z "$session" ]] && return
+    sesh connect "$session"
+  }
+}
+
+zle     -N             sesh-sessions
+bindkey '^f' sesh-sessions
 
 # ------------------------------------------------------------------------------
 # Zinit Plugin Manager
@@ -72,6 +85,17 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# ------------------------------------------------------------------------------
+# SDK Managers
+# ------------------------------------------------------------------------------
+# GVM
+[[ -s "/Users/vivin/.gvm/scripts/gvm" ]] && source "/Users/vivin/.gvm/scripts/gvm"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # ------------------------------------------------------------------------------
 # Shell Integrations (FZF, Zoxide)
@@ -125,17 +149,6 @@ export FZF_DEFAULT_OPTS="
 	--color=border:#403d52,header:#31748f,gutter:#191724
 	--color=spinner:#f6c177,info:#9ccfd8
 	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
-
-# ------------------------------------------------------------------------------
-# SDK Managers
-# ------------------------------------------------------------------------------
-# GVM
-[[ -s "/Users/vivin/.gvm/scripts/gvm" ]] && source "/Users/vivin/.gvm/scripts/gvm"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # ------------------------------------------------------------------------------
 # Aliases

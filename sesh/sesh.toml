@@ -1,48 +1,29 @@
-multiplexer = "tmux"
+#
+# ███████╗███████╗███████╗██╗  ██╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗ 
+# ██╔════╝██╔════╝██╔════╝██║  ██║    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝ 
+# ███████╗█████╗  ███████╗███████║    ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
+# ╚════██║██╔══╝  ╚════██║██╔══██║    ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
+# ███████║███████╗███████║██║  ██║    ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
+# ╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝ 
+#
+# Smart session manager for the terminal
+# https://github.com/joshmedeski/sesh
 
-picker = '''
-sesh list --icons | fzf-tmux -p 80%,70% \
-  --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
-  --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
-  --bind 'tab:down,btab:up' \
-  --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
-  --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
-  --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
-  --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
-  --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
-  --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
-  --preview-window 'right:55%' \
-  --preview 'sesh preview {}'
-'''
+strict_mode = false
 
-# Git detector
-[[detectors]]
-kind = "git"
-dirs = ["~/.config", "~/Documents/Projects", "~/Documents/srew-softwares"]
+sort_order = ["tmux", "config", "zoxide"]
 
-# Define a default session template as a real session
-[[sessions]]
-name = "default"
-root = "~"
-
-[[sessions.windows]]
+# default
+[default_session]
+preview_command = "eza --all --git --icons --color=always {}"
 name = "vim"
-command = "nvim"
+startup_command = "~/.config/sesh/scripts/default.sh"
 
-[[sessions.windows]]
-name = "shell"
-command = "zsh"
+# common
+[[window]]
+name = "vim"
+startup_command = "vim"
 
-[[sessions.windows]]
-name = "agent"
-command = "gemini"
-
-[[sessions.windows]]
-name = "dev"
-command = "npm run dev"
-when_files = ["package.json"]
-
-[[sessions.windows]]
-name = "dev-go"
-command = "go run ."
-when_files = ["go.mod"]
+[[window]]
+name = "zsh"
+startup_command = "ls"
