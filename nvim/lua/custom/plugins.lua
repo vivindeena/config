@@ -7,7 +7,8 @@ local plugins = {
         "gopls",
         "typescript-language-server",
         "eslint-lsp",
-        "prettier"
+        "prettier",
+        "taplo"
       },
     },
   },
@@ -17,7 +18,7 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "lua", "vim", "vimdoc", "go"
+        "lua", "vim", "vimdoc", "go", "toml", "javascript", "typescript", "css", "html", "json", "yaml", "markdown"
       }
     }
   },
@@ -53,7 +54,7 @@ local plugins = {
   -- Null-ls for formatters and linters
   {
     "jose-elias-alvarez/null-ls.nvim",
-    ft = "go",
+    ft = { "go", "javascript", "typescript", "css", "html", "json", "yaml", "markdown", "toml" },
     opts = function()
       return require "custom.configs.null-ls"
     end,

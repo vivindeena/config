@@ -20,14 +20,6 @@ lspconfig.gopls.setup {
       },
     },
   },
-  n = {
-    ["L"] = {
-      function()
-        vim.lsp.buf.hover()
-      end,
-      "LSP hover",
-    },
-  },
 }
 
 lspconfig.ts_ls.setup {
@@ -38,12 +30,9 @@ lspconfig.ts_ls.setup {
       disableSuggestions = true,
     },
   },
-  n = {
-    ["L"] = {
-      function()
-        vim.lsp.buf.hover()
-      end,
-      "LSP hover",
-    },
-  },
+}
+
+lspconfig.taplo.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
 }
