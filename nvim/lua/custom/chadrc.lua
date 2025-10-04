@@ -39,7 +39,7 @@ M.mappings = require "custom.mappings"
 require "custom.options"
 
 -- Load custom autocommands
-require "custom.autocmds"
+require "custom.commands"
 
 -- Set clipboard to use system clipboard
 vim.opt.clipboard = ""

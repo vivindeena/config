@@ -90,6 +90,8 @@ M.general = {
     -- Disable Q
     ["Q"] = { "<nop>" },
 
+    ["<leader>dm"] = { "<cmd>DumpMsgs<CR>", "Dump messages" },
+
     -- Delete without yanking
     ["<leader>d"] = { [["_d]], "Delete without yanking" },
 
