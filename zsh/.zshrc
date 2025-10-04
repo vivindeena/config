@@ -17,6 +17,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+# Set Neovim log file to view Lua traces
+export NVIM_LOG_FILE="$HOME/.local/state/nvim/log"
+
 # ------------------------------------------------------------------------------
 # History (Upgraded)
 # ------------------------------------------------------------------------------

@@ -64,6 +64,7 @@ local plugins = {
   {
     "olexsmir/gopher.nvim",
     ft = "go",
+    opts = {},
     config = function(_, opts)
       require("gopher").setup(opts)
       require("core.utils").load_mappings("gopher")
