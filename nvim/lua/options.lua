@@ -1,8 +1,13 @@
-local opt = vim.opt
+require "nvchad.options"
+
+-- add yours here!
+
+-- o.cursorlineopt ='both' -- to enable cursorline!
+
+local opt = vim.o
 
 opt.number = true
 opt.relativenumber = true
-
 
 opt.tabstop = 4
 opt.shiftwidth = 4
@@ -21,12 +26,10 @@ opt.incsearch = true
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
-
 -- backspace
 opt.backspace = "indent,eol,start"
 
 opt.scrolloff = 8
 opt.signcolumn = "yes"
-opt.isfname:append("@-@")
+-- opt.isfname:append("@-@")
 
-return opt

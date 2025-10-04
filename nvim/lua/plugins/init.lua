@@ -1,4 +1,7 @@
 return {
+
+
+   return {
   "nvim-lua/plenary.nvim",
 
   {
@@ -166,4 +169,91 @@ return {
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
+ 
+  {
+    "stevearc/conform.nvim",
+    event = 'BufWritePre', -- uncomment for format on save
+    opts = require "configs.conform",
+  },
+  
+
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require "configs.lspconfig"
+    end,
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "gopls",
+        "typescript-language-server",
+        "eslint-lsp",
+        "prettier",
+        "taplo"
+      },
+    },
+  }
+  {
+  	"nvim-treesitter/nvim-treesitter",
+  	opts = {
+      ensure_installed = {
+        "lua", "vim", "vimdoc", "go", "toml", "javascript", "typescript", "css", "html", "json", "yaml", "markdown"
+      },
+  	},
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    ft = { "go", "javascript", "typescript", "css", "html", "json", "yaml", "markdown", "toml" },
+    opts = function()
+      return require "custom.configs.null-ls"
+    end,
+  },
+  {
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    opts = {},
+    config = function(_, opts)
+      require("gopher").setup(opts)
+      require("core.utils").load_mappings("gopher")
+    end,
+    build = function()
+      vim.cmd.GoInstallDeps()
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    config = function(_, opts)
+      local cmp = require("cmp")
+
+      local mymappings = {
+        ["<C-k>"] = cmp.mapping.select_prev_item(),
+        ["<C-j>"] = cmp.mapping.select_next_item(),
+      }
+
+      opts.mapping = vim.tbl_deep_extend("force", opts.mapping, mymappings)
+      cmp.setup(opts)
+    end,
+  },
+  {
+    'polarmutex/git-worktree.nvim',
+    version = '^2',
+    dependencies = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope.nvim'},
+    config = function()
+      local Hooks = require("git-worktree.hooks")
+      local config = require('git-worktree.config')
+      local update_on_switch = Hooks.builtins.update_current_buffer_on_switch
+
+      Hooks.register(Hooks.type.SWITCH, function (path, prev_path)
+        vim.notify("Moved from " .. prev_path .. " to " .. path)
+        update_on_switch(path, prev_path)
+      end)
+
+      Hooks.register(Hooks.type.DELETE, function ()
+        vim.cmd(config.update_on_change_command)
+      end)
+      require('telescope').load_extension('git_worktree')
+    end
+  }
 }

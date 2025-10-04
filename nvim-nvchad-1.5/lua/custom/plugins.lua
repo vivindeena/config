@@ -61,18 +61,18 @@ local plugins = {
   },
 
   -- Go development plugin
-  -- {
-  --   "olexsmir/gopher.nvim",
-  --   ft = "go",
-  --   opts = {},
-  --   config = function(_, opts)
-  --     require("gopher").setup(opts)
-  --     require("core.utils").load_mappings("gopher")
-  --   end,
-  --   build = function()
-  --     vim.cmd.GoInstallDeps()
-  --   end,
-  -- },
+  {
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    opts = {},
+    config = function(_, opts)
+      require("gopher").setup(opts)
+      require("core.utils").load_mappings("gopher")
+    end,
+    build = function()
+      vim.cmd.GoInstallDeps()
+    end,
+  },
 
   -- Autocompletion engine
   {
