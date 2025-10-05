@@ -1,14 +1,26 @@
-require "nvchad.autocmds"
+require("nvchad.autocmds")
 
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = highlight_group,
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank({
-      higroup = 'IncSearch',
-      timeout = 40,
-    })
-  end,
-})
+-- -- Highlight on yank
+-- local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+-- vim.api.nvim_create_autocmd("TextYankPost", {
+--     group = highlight_group,
+--     pattern = "*",
+--     callback = function()
+--         vim.highlight.on_yank({
+--             higroup = "IncSearch",
+--             timeout = 40,
+--         })
+--     end,
+-- })
+--
+-- -- Quit Neovim if the last window is nvim-tree
+-- local nvimtree_group = vim.api.nvim_create_augroup("NvimTreeClose", { clear = true })
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--     group = nvimtree_group,
+--     pattern = "*",
+--     callback = function()
+--         if vim.fn.winnr("$") == 1 and vim.bo.filetype == "nvimtree" then
+--             vim.cmd("q")
+--         end
+--     end,
+-- })
