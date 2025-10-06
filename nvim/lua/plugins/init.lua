@@ -86,4 +86,97 @@ return {
             require("telescope").load_extension("git_worktree")
         end,
     },
+    {
+        "olexsmir/gopher.nvim",
+        ft = "go",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        build = function()
+            vim.cmd.GoInstallDeps()
+        end,
+        ---@module "gopher"
+        ---@type gopher.Config
+        opts = {},
+    },
+    {
+        "m4xshen/smartcolumn.nvim",
+        opts = {
+            colorcolumn = "80",
+            disabled_filetypes = {
+                "help",
+                "text",
+                "markdown",
+                "html",
+                "htmldjango",
+                "xml",
+                "json",
+                "javascriptreact",
+                "typescriptreact",
+                "jsx",
+                "tsx",
+                "yaml",
+                "toml",
+                "csv",
+            },
+            custom_colorcolumn = {},
+            scope = "file",
+            editorconfig = true,
+        },
+    },
+    {
+        "HiPhish/rainbow-delimiters.nvim",
+        event = "VeryLazy",
+    },
+    {
+        "cappyzawa/trim.nvim",
+        event = "VeryLazy",
+        opts = {
+            ft_blocklist = { "markdown" },
+        },
+    },
+    {
+        "mbbill/undotree",
+        event = "VeryLazy",
+    },
+    {
+        "folke/todo-comments.nvim",
+        event = "VeryLazy",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("todo-comments").setup()
+        end,
+    },
+    {
+        "nvzone/showkeys",
+        event = "VeryLazy",
+        opts = {
+            position = "bottom-right",
+            keyformat = {
+                ["<BS>"] = "󰁮 ",
+                ["<CR>"] = "󰘌",
+                ["<Space>"] = "󱁐",
+                ["<Up>"] = "󰁝",
+                ["<Down>"] = "󰁅",
+                ["<Left>"] = "󰁍",
+                ["<Right>"] = "󰁔",
+                ["<PageUp>"] = "Page 󰁝",
+                ["<PageDown>"] = "Page 󰁅",
+                ["<M>"] = "Alt",
+                ["<C>"] = "Ctrl",
+            },
+        },
+    },
+    {
+        "OXY2DEV/markview.nvim",
+        lazy = false,
+        ft = { "markdown", "codecompanion" },
+        opts = {
+            preview = {
+                filetypes = { "md", "markdown", "codecompanion" },
+            },
+        },
+        dependencies = { "NvChad/NvChad" },
+        config = function()
+            require("markview.extras.checkboxes").setup()
+        end,
+    },
 }
