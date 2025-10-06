@@ -37,10 +37,10 @@ M.nvdash = {
         { txt = "  Bookmarks", keys = "Spc m a", cmd = "Telescope marks" },
     },
 }
--- M.ui = {
---       tabufline = {
---          lazyload = false
---      }
--- }
+M.ui = {
+    tabufline = {
+        enabled = false,
+    },
+}
 
 return M

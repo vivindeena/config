@@ -85,4 +85,50 @@ map("n", "<leader>sk", "<cmd>ShowkeysToggle<CR>", { desc = "Plugin Toggle Showke
 -- Markview
 map("n", "<leader>pv", "<cmd>Markview Toggle<CR>", { desc = "Markdown Toggle Preview" })
 map("n", "<leader>ps", "<cmd>Markview splitToggle<CR>", { desc = "Markdown Toggle Split" })
-map("n", "<leader>kc", "<cmd>Checkbox toggle<CR>", { desc = "Markdown Toggle Checkbox" })
+map("n", "<leader>kc", function() require("markview.extras.checkboxes").toggle() end, { desc = "Markdown Toggle Checkbox" })
+
+-- Harpoon
+map("n", "<leader>a", function()
+    require("harpoon"):list():add()
+end, { desc = "Harpoon Add file" })
+
+map("n", "<C-e>", function()
+    local harpoon = require("harpoon")
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Harpoon Quick menu" })
+
+map("n", "<C-h>", function()
+    require("harpoon"):list():select(1)
+    vim.notify("In harpoon file 1", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
+end, { desc = "Harpoon Jump to file 1" })
+
+map("n", "<C-j>", function()
+    require("harpoon"):list():select(2)
+    vim.notify("In harpoon file 2", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
+end, { desc = "Harpoon Jump to file 2" })
+
+map("n", "<C-k>", function()
+    require("harpoon"):list():select(3)
+    vim.notify("In harpoon file 3", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
+end, { desc = "Harpoon Jump to file 3" })
+
+map("n", "<C-l>", function()
+    require("harpoon"):list():select(4)
+    vim.notify("In harpoon file 4", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
+end, { desc = "Harpoon Jump to file 4" })
+
+map("n", "<leader><C-h>", function()
+    require("harpoon"):list():replace_at(1)
+end, { desc = "Harpoon Replace file 1" })
+
+map("n", "<leader><C-j>", function()
+    require("harpoon"):list():replace_at(2)
+end, { desc = "Harpoon Replace file 2" })
+
+map("n", "<leader><C-k>", function()
+    require("harpoon"):list():replace_at(3)
+end, { desc = "Harpoon Replace file 3" })
+
+map("n", "<leader><C-l>", function()
+    require("harpoon"):list():replace_at(4)
+end, { desc = "Harpoon Replace file 4" })

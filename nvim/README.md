@@ -159,15 +159,3 @@ A list of plugins and tasks to be added to this configuration:
 
 - [ ] **Frontend Development Setup**:
   - Configure LSP, linters, and formatters for: `html`, `css`, `javascript`, `javascriptreact (jsx)`, `typescript`, `typescriptreact (tsx)`.
-- [x] **`gopher.nvim`**:
-  - Review and finalize the setup for all features.
-  - Fix gopher.nvim configuration and re-enable it in `nvim/lua/custom/plugins.lua`.
-- [ ] **Plugin Integrations**:
-  - [ ] [folke/noice.nvim](https://github.com/folke/noice.nvim) - To improve the UI for messages, cmdline, and popups.
-  - [x] [nvzone/showkeys](https://github.com/nvzone/showkeys) - To display keypresses.
-  - [ ] [rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify) - A notification manager. (Note: nvchad has nvchad support check what to do with that)
-  - [ ] [ThePrimeagen/harpoon](https://www.lazyvim.org/extras/editor/harpoon2) - For file/buffer management. (Note: disable the tab on top, and use harpoon)
-  - [x] [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim) - To highlight and manage TODO comments.
-  - [x] [mbbill/undotree](https://github.com/mbbill/undotree) - To visualize the undo history.
-- [ ] Move Keybindings from old config to nvChad
-- [ ] move to nvchad2.0 or move out of nvchad

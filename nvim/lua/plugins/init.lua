@@ -168,15 +168,45 @@ return {
     {
         "OXY2DEV/markview.nvim",
         lazy = false,
-        ft = { "markdown", "codecompanion" },
-        opts = {
-            preview = {
-                filetypes = { "md", "markdown", "codecompanion" },
-            },
-        },
         dependencies = { "NvChad/NvChad" },
-        config = function()
-            require("markview.extras.checkboxes").setup()
-        end,
+    },
+    {
+        "rcarriga/nvim-notify",
+        event = "VeryLazy",
+        opts = {
+            baczkground_colour = "NotifyBackground",
+            fps = 120,
+            icons = {
+                DEBUG = "",
+                ERROR = "",
+                INFO = "",
+                TRACE = "✎",
+                WARN = "",
+            },
+            level = 2,
+            minimum_width = 50,
+            render = "compact",
+            stages = "fade",
+            time_formats = {
+                notification = "%T",
+                notification_history = "%FT%T",
+            },
+            timeout = 300,
+            top_down = true,
+        },
+    },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            { "rcarriga/nvim-notify" },
+        },
+        opts = {},
+    },
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        event = "VeryLazy",
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
 }
