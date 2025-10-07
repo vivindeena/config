@@ -8,7 +8,6 @@ nvlsp.servers = {
     "gopls",
     "tailwindcss",
     "eslint",
-    "prettierd",
 }
 
 vim.lsp.config["gopls"] = {
