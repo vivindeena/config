@@ -44,6 +44,9 @@ map(
 -- Tab management
 map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Tab Close current", silent = true })
 
+-- Telescope
+map("n", "<leader>km", "<cmd>Telescope keymaps<CR>", { desc = "Telescope Show keymaps" })
+
 -- Git worktree (Telescope)
 map("n", "<leader>gw", function()
 	require("telescope").extensions.git_worktree.git_worktree()
