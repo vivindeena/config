@@ -15,10 +15,10 @@ map("n", "N", "Nzzzv", { desc = "Search Previous result and center" })
 
 -- Todo-comments
 map("n", "]t", function()
-	require("todo-comments").jump_next()
+    require("todo-comments").jump_next()
 end, { desc = "Search Next todo comment" })
 map("n", "[t", function()
-	require("todo-comments").jump_prev()
+    require("todo-comments").jump_prev()
 end, { desc = "Search Previous todo comment" })
 
 -- UndoTree
@@ -35,10 +35,10 @@ map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Window Close current split" }
 
 -- Substitute word under cursor
 map(
-	"n",
-	"<leader>sr",
-	[[:%s/\<\<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "Editing Substitute word under cursor" }
+    "n",
+    "<leader>sr",
+    [[:%s/\<\<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "Editing Substitute word under cursor" }
 )
 
 -- Tab management
@@ -49,11 +49,11 @@ map("n", "<leader>km", "<cmd>Telescope keymaps<CR>", { desc = "Telescope Show ke
 
 -- Git worktree (Telescope)
 map("n", "<leader>gw", function()
-	require("telescope").extensions.git_worktree.git_worktree()
+    require("telescope").extensions.git_worktree.git_worktree()
 end, { desc = "Git Switch worktree" })
 
 map("n", "<leader>gwa", function()
-	require("telescope").extensions.git_worktree.create_git_worktree()
+    require("telescope").extensions.git_worktree.create_git_worktree()
 end, { desc = "Git Create new worktree" })
 
 -- Disable Q
@@ -88,7 +88,9 @@ map("n", "<leader>sk", "<cmd>ShowkeysToggle<CR>", { desc = "Plugin Toggle Showke
 -- Markview
 map("n", "<leader>pv", "<cmd>Markview Toggle<CR>", { desc = "Markdown Toggle Preview" })
 map("n", "<leader>ps", "<cmd>Markview splitToggle<CR>", { desc = "Markdown Toggle Split" })
-map("n", "<leader>kc", function() require("markview.extras.checkboxes").toggle() end, { desc = "Markdown Toggle Checkbox" })
+map("n", "<leader>kc", function()
+    require("markview.extras.checkboxes").toggle()
+end, { desc = "Markdown Toggle Checkbox" })
 
 -- Harpoon
 map("n", "<leader>a", function()
@@ -102,22 +104,22 @@ end, { desc = "Harpoon Quick menu" })
 
 map("n", "<C-h>", function()
     require("harpoon"):list():select(1)
-    vim.notify("In harpoon file 1", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
+    vim.notify("In harpoon file 1", vim.log.levels.INFO, { title = "Harpoon", timeout = 200 })
 end, { desc = "Harpoon Jump to file 1" })
 
 map("n", "<C-j>", function()
     require("harpoon"):list():select(2)
-    vim.notify("In harpoon file 2", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
+    vim.notify("In harpoon file 2", vim.log.levels.INFO, { title = "Harpoon", timeout = 200 })
 end, { desc = "Harpoon Jump to file 2" })
 
 map("n", "<C-k>", function()
     require("harpoon"):list():select(3)
-    vim.notify("In harpoon file 3", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
+    vim.notify("In harpoon file 3", vim.log.levels.INFO, { title = "Harpoon", timeout = 200 })
 end, { desc = "Harpoon Jump to file 3" })
 
 map("n", "<C-l>", function()
     require("harpoon"):list():select(4)
-    vim.notify("In harpoon file 4", vim.log.levels.INFO, {title = "Harpoon",timeout = 200})
+    vim.notify("In harpoon file 4", vim.log.levels.INFO, { title = "Harpoon", timeout = 200 })
 end, { desc = "Harpoon Jump to file 4" })
 
 map("n", "<leader><C-h>", function()
