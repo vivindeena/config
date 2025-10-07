@@ -7,6 +7,7 @@ This is a personalized NvChad setup with additional plugins and customizations.
 ## Plugins & Language Support
 
 ### Installed Plugins
+
 - **`gopher.nvim`**: For enhanced Go development workflows.
 - **`hiphish/rainbow-delimiters.nvim`**: Provides rainbow-colored parentheses, brackets, and braces.
 - **`m4xshen/smartcolumn.nvim`**: Adds a dynamic color column that respects filetypes and editorconfig.
@@ -27,6 +28,7 @@ For Neovim to understand the syntax of the new language, you need to ensure its 
 - **Action:** Add the name of the language parser to the `ensure_installed` table.
 
 **Example for adding `typescript`:**
+
 ```lua
 -- lua/configs/treesitter.lua
 local options = {
@@ -51,6 +53,7 @@ Your configuration automatically installs any server listed in `lua/configs/lspc
 - **Action:** Add the name of the LSP server (e.g., `vtsls` for TypeScript) to the `lspconfig.servers` table.
 
 **Example for adding `vtsls`:**
+
 ```lua
 -- lua/configs/lspconfig.lua
 lspconfig.servers = {
@@ -62,7 +65,7 @@ lspconfig.servers = {
 
 **How it works:** The `lua/configs/mason-lspconfig.lua` file automatically reads the `lspconfig.servers` table and tells Mason to install every server listed there. You do not need to edit `mason-lspconfig.lua` yourself.
 
-*Note: If a server requires special setup options, you can add a separate configuration block for it, like you have for `gopls` in the same file.*
+_Note: If a server requires special setup options, you can add a separate configuration block for it, like you have for `gopls` in the same file._
 
 #### 3. Code Formatting (Conform)
 
@@ -72,6 +75,7 @@ Formatters are defined per filetype. Mason-conform will then help you install th
 - **Action:** Add the filetype and a list of formatters to the `formatters_by_ft` table.
 
 **Example for adding `prettier` for `typescript` and `javascript`:**
+
 ```lua
 -- lua/configs/conform.lua
 local options = {
@@ -94,6 +98,7 @@ Similar to the LSP setup, your linting configuration automatically installs any 
 - **Action:** Add the filetype and a list of linters to the `linters_by_ft` table.
 
 **Example for adding `luacheck` for `lua`:**
+
 ```lua
 -- lua/configs/lint.lua
 local lint = require("lint")
@@ -117,6 +122,7 @@ This configuration includes several enhancements over the base NvChad setup:
 In NvChad v2.5, keymap grouping for the cheatsheet (`<leader>ch`) is implicit and controlled by the `desc` field of each mapping.
 
 **How it Works:**
+
 - **Group Name**: The first word of the `desc` string determines the group name.
 - **Description**: The rest of the string becomes the description for the keymap.
 - **Capitalization**: Group names are automatically capitalized in the cheatsheet.
@@ -140,22 +146,22 @@ vim.keymap.set("v", "<leader>y", '"+y', { desc = "Clipboard Yank" })
 This will appear in the cheatsheet as:
 
 **LSP**
-  - `Go to definition` `gd`
-  - `Find references` `gr`
+
+- `Go to definition` `gd`
+- `Find references` `gr`
 
 **Clipboard (v)**
-  - `Yank` `<leader>y`
+
+- `Yank` `<leader>y`
 
 **Note:** Certain group names can be excluded from the cheatsheet via the `nvconfig` file.
 
 ### Custom Autocommands
+
 - An autocommand in `lua/autocmds.lua` automatically opens the NvChad dashboard when the last buffer is closed.
 
 ---
 
 ## TODO
 
-A list of plugins and tasks to be added to this configuration:
-
-- [ ] **Frontend Development Setup**:
-  - Configure LSP, linters, and formatters for: `html`, `css`, `javascript`, `javascriptreact (jsx)`, `typescript`, `typescriptreact (tsx)`.
+- [ ] Fix gopher.nvim

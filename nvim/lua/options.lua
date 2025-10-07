@@ -1,7 +1,5 @@
 require("nvchad.options")
 
--- add yours here!
-
 local opt = vim.o
 
 opt.number = true
@@ -33,6 +31,5 @@ opt.signcolumn = "yes"
 
 opt.cursorlineopt = "both"
 
+opt.mouse = ""
 opt.clipboard = ""
-
--- opt.isfname:append("@-@")
