@@ -33,6 +33,11 @@ map("n", "<leader>sh", "<C-w>s", { desc = "Window Split horizontally" })
 map("n", "<leader>se", "<C-w>=", { desc = "Window Make splits equal" })
 map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Window Close current split" })
 
+map("n", "<M-h>", "<C-w>h", { desc = "Window Go to left" })
+map("n", "<M-j>", "<C-w>j", { desc = "Window Go to down" })
+map("n", "<M-k>", "<C-w>k", { desc = "Window Go to up" })
+map("n", "<M-l>", "<C-w>l", { desc = "Window Go to right" })
+
 -- Substitute word under cursor
 map(
     "n",
@@ -137,3 +142,17 @@ end, { desc = "Harpoon Replace file 3" })
 map("n", "<leader><C-l>", function()
     require("harpoon"):list():replace_at(4)
 end, { desc = "Harpoon Replace file 4" })
+
+-- Disable arrow keys and recommend hjkl
+map("n", "<Up>", function()
+    vim.notify("Use k instead", vim.log.levels.WARN, { title = "Arrow Key Disabled" })
+end, { desc = "System Use k instead" })
+map("n", "<Down>", function()
+    vim.notify("Use j instead", vim.log.levels.WARN, { title = "Arrow Key Disabled" })
+end, { desc = "System Use j instead" })
+map("n", "<Left>", function()
+    vim.notify("Use h instead", vim.log.levels.WARN, { title = "Arrow Key Disabled" })
+end, { desc = "System Use h instead" })
+map("n", "<Right>", function()
+    vim.notify("Use l instead", vim.log.levels.WARN, { title = "Arrow Key Disabled" })
+end, { desc = "System Use l instead" })
