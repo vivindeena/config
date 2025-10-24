@@ -33,3 +33,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --         end
 --     end,
 -- })
+
+-- Enable line wrapping for markdown files
+local markdown_wrap_group = vim.api.nvim_create_augroup("MarkdownWrap", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    group = markdown_wrap_group,
+    pattern = "markdown",
+    callback = function()
+        vim.opt.wrap = true
+    end,
+})

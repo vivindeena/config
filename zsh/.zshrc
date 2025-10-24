@@ -62,6 +62,9 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
+# Load completions system
+autoload -Uz compinit && compinit
+
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
@@ -78,9 +81,6 @@ zinit snippet OMZP::aws
 zinit snippet OMZP::command-not-found
 
 zinit cdreplay -q
-
-# Load completions system
-autoload -Uz compinit && compinit
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -166,3 +166,17 @@ export PATH="/opt/nvim/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# bun completions
+[ -s "/Users/vivin/.bun/_bun" ] && source "/Users/vivin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/vivin/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

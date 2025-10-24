@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+export PNPM_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/pnpm"
+if [ ! -s "$PNPM_HOME/pnpm" ]; then
+  echo "Installing pnpm..."
+  curl -fsSL https://get.pnpm.io/install.sh | sh -
+else
+  echo "pnpm already installed."
+fi
