@@ -29,7 +29,7 @@ M.nvdash = {
     },
 
     buttons = {
-        { txt = "  New File", keys = "Ctrl b", cmd = "enew" },
+        { txt = "  New File", keys = "b", cmd = "enew" },
         { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
         { txt = "  Find File", keys = "Spc f f", cmd = "Telescope find_files" },
         { txt = "󰈚  Recent Files", keys = "Spc f o", cmd = "Telescope oldfiles" },
@@ -41,6 +41,19 @@ M.ui = {
     tabufline = {
         enabled = false,
     },
-}
 
+    statusline = {
+        order = { "mode", "file", "macro", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
+
+        modules = {
+            macro = function()
+                local reg = vim.fn.reg_recording()
+                if reg == "" then
+                    return ""
+                end
+                return "%#WarningMsg# " .. reg .. "%#StText#"
+            end,
+        },
+    },
+}
 return M

@@ -18,10 +18,8 @@ local all_servers = {}
 for _, s in ipairs(lspconfig.servers) do
     if not table_contains(ignore_install, s) then
         table.insert(all_servers, s)
-        print(s)
     end
 end
-print(all_servers)
 require("mason-lspconfig").setup({
     ensure_installed = all_servers,
     automatic_installation = false,
