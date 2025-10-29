@@ -43,3 +43,13 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt.wrap = true
     end,
 })
+
+-- Enable line wrapping for quickfix and loclist
+local list_wrap_group = vim.api.nvim_create_augroup("ListWrap", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	group = list_wrap_group,
+	pattern = { "qf", "loclist" },
+	callback = function()
+		vim.opt_local.wrap = true
+	end,
+})

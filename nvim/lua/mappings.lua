@@ -51,6 +51,9 @@ map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Tab Close current", silent
 
 -- Telescope
 map("n", "<leader>km", "<cmd>Telescope keymaps<CR>", { desc = "Telescope Show keymaps" })
+map("n", "<leader>nh", function()
+    require("noice").cmd("history")
+end, { desc = "Noice Show history" })
 
 -- Git worktree (Telescope)
 map("n", "<leader>gw", function()
@@ -93,9 +96,7 @@ map("n", "<leader>sk", "<cmd>ShowkeysToggle<CR>", { desc = "Plugin Toggle Showke
 -- Markview
 map("n", "<leader>pv", "<cmd>Markview Toggle<CR>", { desc = "Markdown Toggle Preview" })
 map("n", "<leader>ps", "<cmd>Markview splitToggle<CR>", { desc = "Markdown Toggle Split" })
-map("n", "<leader>kc", function()
-    require("markview.extras.checkboxes").toggle()
-end, { desc = "Markdown Toggle Checkbox" })
+map("n", "<leader>kt", "<cmd>Checkbox toggle<CR>", { desc = "Markdown Toggle Checkbox" })
 
 -- Harpoon
 map("n", "<leader>a", function()

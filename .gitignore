@@ -4,3 +4,6 @@ fzf-git.sh
 *.log
 
 configstore
+
+pgcli/history
+pgcli/log
