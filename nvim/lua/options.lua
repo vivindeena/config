@@ -31,5 +31,5 @@ opt.signcolumn = "yes"
 
 opt.cursorlineopt = "both"
 
-opt.mouse = ""
+-- opt.mouse = ""
 opt.clipboard = ""
