@@ -101,6 +101,7 @@ map("n", "<leader>kt", "<cmd>Checkbox toggle<CR>", { desc = "Markdown Toggle Che
 -- Harpoon
 map("n", "<leader>a", function()
     require("harpoon"):list():add()
+    vim.notify("File added to Harpoon!", vim.log.levels.INFO, { title = "Harpoon" })
 end, { desc = "Harpoon Add file" })
 
 map("n", "<C-e>", function()

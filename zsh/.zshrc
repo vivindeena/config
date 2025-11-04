@@ -180,3 +180,18 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+cp() {
+  if [ "$#" -eq 1 ]; then
+    # If one argument is passed, copy file contents to clipboard
+    cat "$1" | pbcopy
+    echo "📋 Copied contents of '$1' to clipboard."
+  else
+    # Otherwise, behave like normal cp
+    command cp "$@"
+  fi
+}
