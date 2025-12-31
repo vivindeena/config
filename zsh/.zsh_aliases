@@ -48,3 +48,8 @@ alias lg="lazygit"
 pbc() {
     cat "$1" | pbcopy
 }
+
+# ------------------------------------------------------------------------------
+# Database
+# ------------------------------------------------------------------------------
+alias dblogin='pgcli postgresql://admin:admin123@localhost:5432/qg-sentinel'
