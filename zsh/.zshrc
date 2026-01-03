@@ -53,6 +53,25 @@ zle     -N             sesh-sessions
 bindkey '^f' sesh-sessions
 
 # ------------------------------------------------------------------------------
+# Edit Command Buffer
+# ------------------------------------------------------------------------------
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
+# ------------------------------------------------------------------------------
+# Clear Screen and Scrollback
+# ------------------------------------------------------------------------------
+function clear-screen-and-scrollback() {
+  echoti civis >"$TTY"
+  printf '%b' '\e[H\e[2J\e[3J' >"$TTY"
+  echoti cnorm >"$TTY"
+  zle redisplay
+}
+zle -N clear-screen-and-scrollback
+bindkey '^Xl' clear-screen-and-scrollback
+
+# ------------------------------------------------------------------------------
 # Zinit Plugin Manager
 # ------------------------------------------------------------------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -181,6 +200,21 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+
+# ------------------------------------------------------------------------------
+# Hooks
+# ------------------------------------------------------------------------------
+# Auto-list directory contents when changing directories
+chpwd() {
+  ls
+}
+
+# ------------------------------------------------------------------------------
+# File Operations
+# ------------------------------------------------------------------------------
+# Enable zmv for batch file operations
+autoload -Uz zmv
+alias mmv='noglob zmv -W'
 
 # ------------------------------------------------------------------------------
 # Functions
