@@ -53,3 +53,17 @@ pbc() {
 # Database
 # ------------------------------------------------------------------------------
 alias dblogin='pgcli postgresql://admin:admin123@localhost:5432/qg-sentinel'
+
+# ------------------------------------------------------------------------------
+# Suffix Aliases (open files by extension)
+# ------------------------------------------------------------------------------
+alias -s json=jless
+alias -s md=bat
+alias -s go='$EDITOR'
+alias -s rs='$EDITOR'
+alias -s txt=bat
+alias -s log=bat
+alias -s py='$EDITOR'
+alias -s js='$EDITOR'
+alias -s ts='$EDITOR'
+alias -s html=open
