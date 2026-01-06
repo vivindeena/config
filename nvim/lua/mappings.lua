@@ -64,6 +64,18 @@ map("n", "<leader>gwa", function()
     require("telescope").extensions.git_worktree.create_git_worktree()
 end, { desc = "Git Create new worktree" })
 
+-- Gitsigns
+map("n", "<leader>ph", function()
+    require("gitsigns").preview_hunk()
+end, { desc = "Git Preview hunk" })
+
+map("n", "<leader>rh", function()
+    require("gitsigns").reset_hunk()
+end, { desc = "Git Reset hunk" })
+
+-- Conform format toggle
+map("n", "<leader>tf", _G.toggle_format_on_save, { desc = "Editing Toggle format on save" })
+
 -- Disable Q
 map("n", "Q", "<nop>", { desc = "System Disable Q" })
 
