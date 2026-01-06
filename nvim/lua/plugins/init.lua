@@ -90,10 +90,6 @@ return {
         "olexsmir/gopher.nvim",
         ft = "go",
         dependencies = { "ray-x/go.nvim", "nvim-lua/plenary.nvim" },
-
-        build = function()
-            vim.cmd.GoInstallDeps()
-        end,
         ---@module "gopher"
         opts = {},
     },
@@ -250,6 +246,13 @@ return {
         ft = { "javascript", "javascriptreact", "typescript", "typescriptreact", "html" },
         config = function()
             require("nvim-ts-autotag").setup()
+        end,
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("gitsigns").setup()
         end,
     },
 }
