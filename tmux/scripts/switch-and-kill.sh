@@ -7,8 +7,8 @@ sessions=$(tmux list-sessions -F '#{session_name}' | grep -v "^$current_session$
 count=$(echo "$sessions" | grep -c .)
 
 if [ "$count" -eq 0 ]; then
-    tmux display-message "No other sessions to switch to"
+    tmux confirm-before -p "Kill session '$current_session' and exit? (y/n)" "kill-session -t '$current_session'"
 else
     tmux confirm-before -p "Kill session '$current_session' and switch to another? (y/n)" \
-        "run-shell '~/.config/tmux/scripts/switch-and-kill-confirmed.sh $current_session'"
+        "run-shell '~/.config/tmux/scripts/switch-and-kill-confirmed.sh '\''$current_session'\'''"
 fi
