@@ -42,7 +42,7 @@ map("n", "<M-l>", "<C-w>l", { desc = "Window Go to right" })
 map(
     "n",
     "<leader>sr",
-    [[:%s/\<\<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
     { desc = "Editing Substitute word under cursor" }
 )
 
