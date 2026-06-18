@@ -74,6 +74,10 @@ map("n", "<leader>rh", function()
 end, { desc = "Git Reset hunk" })
 
 -- Conform format toggle
+map({ "n", "x" }, "<leader>fm", function()
+    require("conform").format({ lsp_format = "fallback" })
+end, { desc = "general format file" })
+
 map("n", "<leader>tf", _G.toggle_format_on_save, { desc = "Editing Toggle format on save" })
 
 -- Disable Q
