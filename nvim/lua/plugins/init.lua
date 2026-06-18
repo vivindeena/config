@@ -121,6 +121,31 @@ return {
     {
         "HiPhish/rainbow-delimiters.nvim",
         event = "VeryLazy",
+        init = function()
+            vim.g.rainbow_delimiters = {
+                condition = function(bufnr)
+                    local excluded_filetypes = {
+                        NvimTree = true,
+                        ["neo-tree"] = true,
+                        notify = true,
+                        noice = true,
+                        lazy = true,
+                        mason = true,
+                    }
+
+                    local excluded_buftypes = {
+                        help = true,
+                        nofile = true,
+                        prompt = true,
+                        quickfix = true,
+                        terminal = true,
+                    }
+
+                    return not excluded_filetypes[vim.bo[bufnr].filetype]
+                        and not excluded_buftypes[vim.bo[bufnr].buftype]
+                end,
+            }
+        end,
     },
     {
         "cappyzawa/trim.nvim",

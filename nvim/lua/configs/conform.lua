@@ -27,7 +27,7 @@ local options = {
         if format_on_save_enabled then
             return {
                 timeout_ms = 500,
-                lsp_fallback = true,
+                lsp_format = "fallback",
             }
         end
     end,
