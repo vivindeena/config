@@ -220,9 +220,12 @@ alias mmv='noglob zmv -W'
 # Functions
 # ------------------------------------------------------------------------------
 cp() {
-  if [ "$#" -eq 1 ]; then
+  if [ "$#" -eq 0 ] && [ ! -t 0 ]; then
+    pbcopy
+    echo "📋 Copied piped input to clipboard."
+  elif [ "$#" -eq 1 ]; then
     # If one argument is passed, copy file contents to clipboard
-    cat "$1" | pbcopy
+    pbcopy < "$1"
     echo "📋 Copied contents of '$1' to clipboard."
   else
     # Otherwise, behave like normal cp
