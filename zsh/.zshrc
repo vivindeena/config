@@ -97,7 +97,7 @@ zinit light MichaelAquilina/zsh-you-should-use
 # Add in snippets
 zinit snippet OMZP::sudo
 zinit snippet OMZP::aws
-zinit snippet OMZP::command-not-found
+# zinit snippet OMZP::command-not-found
 
 zinit cdreplay -q
 
@@ -114,10 +114,10 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # GVM
 [[ -s "/Users/vivin/.gvm/scripts/gvm" ]] && source "/Users/vivin/.gvm/scripts/gvm"
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# # NVM
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # ------------------------------------------------------------------------------
 # Shell Integrations (FZF, Zoxide)
@@ -188,17 +188,15 @@ export PATH="/opt/nvim/bin:$PATH"
 # bun completions
 [ -s "/Users/vivin/.bun/_bun" ] && source "/Users/vivin/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
-# pnpm
-export PNPM_HOME="/Users/vivin/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+
+# # pnpm disabled: Vite+ vp env owns package manager runtime
+# export PNPM_HOME="/Users/vivin/.local/share/pnpm"
+# case ":$PATH:" in
+#   *":$PNPM_HOME:"*) ;;
+#   *) export PATH="$PNPM_HOME:$PATH" ;;
+# esac
+# # pnpm end
 
 
 # ------------------------------------------------------------------------------
@@ -232,3 +230,13 @@ cp() {
     command cp "$@"
   fi
 }
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
+
+
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
+
+# Added by CodeRabbit CLI installer
+export PATH="/Users/vivin/.local/bin:$PATH"
