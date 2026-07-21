@@ -4,6 +4,8 @@ fzf-git.sh
 *.log
 
 configstore
+varlock
+caagent
 
 pgcli/history
 pgcli/log

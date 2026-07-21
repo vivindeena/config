@@ -31,6 +31,7 @@ alias gshp='git stash pop'
 # ------------------------------------------------------------------------------
 alias ls="eza -l --git --git-repos --icons=always --color=always --color-scale=all --color-scale-mode=gradient --no-time --no-user --no-permissions --no-filesize"
 alias ll="eza -lao --git --git-repos --icons=always --color=always --color-scale=all --color-scale-mode=gradient --no-permissions"
+alias lt="eza --tree --level=2 --icons=always --color=always"
 
 # ------------------------------------------------------------------------------
 # Neovim

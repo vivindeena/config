@@ -91,7 +91,6 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
 zinit light MichaelAquilina/zsh-you-should-use
 
 # Add in snippets
@@ -101,12 +100,16 @@ zinit snippet OMZP::aws
 
 zinit cdreplay -q
 
+# Add Carapace completions while retaining native Zsh completion definitions.
+if (( $+commands[carapace] )); then
+  export CARAPACE_BRIDGES='zsh'
+  source <(carapace _carapace zsh)
+fi
+
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':completion:*' menu select
 
 # ------------------------------------------------------------------------------
 # SDK Managers
@@ -166,11 +169,11 @@ _fzf_comprun() {
 }
 
 export FZF_DEFAULT_OPTS="
-	--color=fg:#908caa,bg:#191724,hl:#ebbcba
-	--color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
-	--color=border:#403d52,header:#31748f,gutter:#191724
-	--color=spinner:#f6c177,info:#9ccfd8
-	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
+	--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8
+	--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC
+	--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8
+	--color=selected-bg:#45475A
+	--color=border:#6C7086,label:#CDD6F4"
 
 # ------------------------------------------------------------------------------
 # Aliases
@@ -198,14 +201,6 @@ export PATH="/opt/nvim/bin:$PATH"
 # esac
 # # pnpm end
 
-
-# ------------------------------------------------------------------------------
-# Hooks
-# ------------------------------------------------------------------------------
-# Auto-list directory contents when changing directories
-chpwd() {
-  ls
-}
 
 # ------------------------------------------------------------------------------
 # File Operations

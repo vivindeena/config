@@ -14,5 +14,5 @@ For neovim related TODO's and documentation, please refer to [nvim/README.md](./
 
 zsh
 
-- [ ] Investigate caropasse for autocomplete engine
-- [ ] Investigate starship, or oh-my-posh, to replace p10k
+- [x] Use Carapace for completions while retaining native Zsh definitions
+- [ ] Migrate from Powerlevel10k to Starship after completing the [prompt parity plan](./docs/starship-migration.md)
