@@ -1,5 +1,16 @@
 require("nvchad.autocmds")
 
+-- Keep a command row between NvChad's statusline and a bottom tmux status bar.
+vim.api.nvim_create_autocmd("User", {
+    pattern = "VeryLazy",
+    once = true,
+    callback = function()
+        vim.schedule(function()
+            vim.o.cmdheight = 1
+        end)
+    end,
+})
+
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -47,9 +58,9 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Enable line wrapping for quickfix and loclist
 local list_wrap_group = vim.api.nvim_create_augroup("ListWrap", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-	group = list_wrap_group,
-	pattern = { "qf", "loclist" },
-	callback = function()
-		vim.opt_local.wrap = true
-	end,
+    group = list_wrap_group,
+    pattern = { "qf", "loclist" },
+    callback = function()
+        vim.opt_local.wrap = true
+    end,
 })

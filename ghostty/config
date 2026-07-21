@@ -7,10 +7,11 @@ font-size = 16
 
 # Window
 background-opacity = 0.9
-background-blur = 100
+background-blur = 20
 window-padding-x = 10
-window-padding-y = 10
+window-padding-y = 5,0
 window-decoration = none
+window-padding-color = extend
 maximize = true
 confirm-close-surface = false
 
@@ -19,6 +20,7 @@ macos-option-as-alt = true
 
 # Cursor
 cursor-style = block_hollow
+mouse-hide-while-typing = true
 
 # Scrolling
 scrollback-limit = 1000

@@ -9,3 +9,8 @@ caagent
 
 pgcli/history
 pgcli/log
+
+# TPM-managed runtime plugins
+tmux/plugins/tmux-yank/
+tmux/plugins/tmux-thumbs/
+tmux/plugins/tmux-fzf-url/

@@ -30,6 +30,7 @@ opt.scrolloff = 8
 opt.signcolumn = "yes"
 
 opt.cursorlineopt = "both"
+opt.cmdheight = 1
 
 -- opt.mouse = ""
 opt.clipboard = ""
